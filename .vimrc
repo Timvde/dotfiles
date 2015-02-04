@@ -14,9 +14,13 @@ Plugin 'vim-scripts/tComment'
 Plugin 'haya14busa/incsearch.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tpope/vim-sleuth'
+Plugin 'sjl/gundo.vim'
 call vundle#end()
 
 filetype plugin indent on
+
+" Graphical undo tree bindings
+nnoremap <F5> :GundoToggle<CR>
 
 " Yankstack settings
 let g:yankstack_yank_keys = ['y', 'd']
