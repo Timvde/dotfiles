@@ -15,6 +15,7 @@ Plugin 'haya14busa/incsearch.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tpope/vim-sleuth'
 Plugin 'sjl/gundo.vim'
+Plugin 'tpope/vim-fugitive'
 call vundle#end()
 
 filetype plugin indent on
@@ -162,3 +163,6 @@ endfunction
 " Visual shifting does not exit Visual mode
 vnoremap < <gv
 vnoremap > >gv
+
+" Git blame
+noremap <leader>gb :Gblame<CR>
