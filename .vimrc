@@ -16,6 +16,8 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tpope/vim-sleuth'
 Plugin 'sjl/gundo.vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/syntastic'
+Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 
 filetype plugin indent on
@@ -29,7 +31,7 @@ nnoremap <F7> :Yanks<CR>
 
 " NERDTree bindings
 map <F8> :NERDTreeToggle<CR>
-map <F9> :NERDTreeFind<CR>
+map <S-F8> :NERDTreeFind<CR>
 
 let mapleader = ","
 let g:mapleader = ","
@@ -89,6 +91,7 @@ nmap <silent> <leader>pw :call DoWindowSwap()<CR>
 
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
+setlocal spelllang=nl
 
 " Change default PageUp/Down mappings to stop doing weird things to cursor
 " placement
@@ -166,3 +169,17 @@ vnoremap > >gv
 
 " Git blame
 noremap <leader>gb :Gblame<CR>
+
+colorscheme pablo
+
+let g:airline_powerline_fonts = 1
+
+" Find ctags in current directory, then recursively upwards
+set tags=./tags;
+" ctags previous/next match
+nmap [ :tprevious<CR>
+nmap ] :tnext<CR>
+
+" allow local .vimrc file
+set exrc
+set secure
