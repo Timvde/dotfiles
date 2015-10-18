@@ -8,6 +8,7 @@ Plugin 'gmarik/vundle'
 Plugin 'rking/ag.vim'
 Plugin 'maxbrunsfeld/vim-yankstack'
 Plugin 'kien/ctrlp.vim'
+Plugin 'nixprime/cpsm'
 Plugin 'vim-scripts/The-NERD-tree'
 Plugin 'bling/vim-airline'
 Plugin 'vim-scripts/tComment'
@@ -54,7 +55,7 @@ syntax enable
 set expandtab
 set nosmartindent
 set shiftwidth=4
-set tabstop=4
+set tabstop=4 " number of visual spaces per tab
 
 " Move lines up and down (This does not work in most terminals because of Alt)
 " TODO: find a better shortcut :(
@@ -122,6 +123,8 @@ if executable('ag')
     let g:ctrlp_user_command = 'ag %s -l -g ""'
 endif
 
+let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
@@ -183,3 +186,7 @@ nmap ] :tnext<CR>
 " allow local .vimrc file
 set exrc
 set secure
+
+" Nicer K
+runtime ftplugin/man.vim
+nnoremap <silent>K :<C-U>exe "Man" v:count "<cword>"<CR>
