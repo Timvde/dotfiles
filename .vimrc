@@ -19,6 +19,8 @@ Plugin 'sjl/gundo.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'paradigm/TextObjectify'
+Plugin 'michaeljsmith/vim-indent-object'
 call vundle#end()
 
 filetype plugin indent on
@@ -173,7 +175,12 @@ vnoremap > >gv
 " Git blame
 noremap <leader>gb :Gblame<CR>
 
-colorscheme pablo
+" Molokai needs the g:rehash256 = 1 for better colour support
+colorscheme molokai
+let g:rehash256 = 1
+
+" Highlight current horizontal line
+set cursorline
 
 let g:airline_powerline_fonts = 1
 
