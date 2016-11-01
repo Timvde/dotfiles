@@ -6,7 +6,6 @@ set rtp +=$HOME/.vim/bundle/vundle
 call vundle#begin()
 Plugin 'gmarik/vundle'
 Plugin 'rking/ag.vim'
-Plugin 'maxbrunsfeld/vim-yankstack'
 Plugin 'kien/ctrlp.vim'
 Plugin 'nixprime/cpsm'
 Plugin 'vim-scripts/The-NERD-tree'
@@ -20,17 +19,15 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'paradigm/TextObjectify'
-Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'lyuts/vim-rtags'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'lervag/vimtex'
 call vundle#end()
 
 filetype plugin indent on
 
 " Graphical undo tree bindings
 nnoremap <F5> :GundoToggle<CR>
-
-" Yankstack settings
-let g:yankstack_yank_keys = ['y', 'd']
-nnoremap <F7> :Yanks<CR>
 
 " NERDTree bindings
 map <F8> :NERDTreeToggle<CR>
@@ -104,9 +101,6 @@ map <PageUp> :set scroll=0<CR>:set scroll^=2<CR>:set scroll-=1<CR><C-U>:set scro
 " show incomplete commands in bottom right corner
 set showcmd
 
-" always show cursor
-set ruler
-
 " get rid of the delay when pressing O
 set timeout timeoutlen=1000 ttimeoutlen=100
 
@@ -133,11 +127,6 @@ set splitright
 
 " Start searching immediately
 set incsearch
-
-" let g:indentLine_color_term = 25
-" let g:indentLine_char = '│'
-" also support tabs
-set list lcs=tab:\|\ 
 
 " enable airline
 set laststatus=2
@@ -178,6 +167,8 @@ noremap <leader>gb :Gblame<CR>
 " Molokai needs the g:rehash256 = 1 for better colour support
 colorscheme molokai
 let g:rehash256 = 1
+set background=dark
+highlight Normal ctermbg=NONE
 
 " Highlight current horizontal line
 set cursorline
@@ -194,6 +185,22 @@ nmap ] :tnext<CR>
 set exrc
 set secure
 
-" Nicer K
-runtime ftplugin/man.vim
-nnoremap <silent>K :<C-U>exe "Man" v:count "<cword>"<CR>
+" Use cppman when using K in cpp files
+autocmd FileType cpp set keywordprg=cppman
+
+" Use an undofile and save it somewhere reasonable (outside of working
+" directory)
+set undofile
+set undodir=~/.vim/tmp/undo//
+
+" I haz yy already, so tyvm
+nnoremap Y y$
+
+" Remove comment characters when joining lines, if it makes sense
+set formatoptions+=j
+
+" Toggle rainbow parentheses
+nmap <F6> :RainbowParenthesesToggle<CR>
+
+" switch between html tags
+runtime macros/matchit.vim
