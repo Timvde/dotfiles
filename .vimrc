@@ -6,7 +6,7 @@ set rtp +=$HOME/.vim/bundle/vundle
 call vundle#begin()
 Plugin 'gmarik/vundle'
 Plugin 'rking/ag.vim'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'nixprime/cpsm'
 Plugin 'vim-scripts/The-NERD-tree'
 Plugin 'bling/vim-airline'
