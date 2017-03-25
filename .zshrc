@@ -74,7 +74,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/home/tim/bin/idp/bin:/home/tim/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/tim/scripts:/home/tim/bin:/home/tim/Android/android-sdk/sdk/tools:/home/tim/.cabal/bin"
+export PATH="/home/tim/bin/idp/bin:/home/tim/bin:/home/tim/scripts:/usr/bin/vendor_perl:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # Preferred editor for local and remote sessions
@@ -86,7 +86,7 @@ export TERM=xterm-256color
 
 # include bash aliases
 source $HOME/.bash_aliases
-source /usr/local/bin/virtualenvwrapper.sh
+source /usr/bin/virtualenvwrapper.sh
 
 # Better history search
 bindkey "^r" history-incremental-pattern-search-backward
