@@ -24,4 +24,5 @@ user_pref("ui.key.menuAccessKeyFocuses", false);
 user_pref("media.gpu-process-decoder", true);
 user_pref("layers.gpu-process.enabled", true);
 // Because fuck you, Webkit
-user_pref("layout.css.prefixes.webkit", false)
+user_pref("layout.css.prefixes.webkit", false);
+user_pref("network.IDN_show_punycode", true);
