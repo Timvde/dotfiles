@@ -1,0 +1,3 @@
+# Put in .config/zathura/zathurarc
+set synctex true
+set synctex-editor-command "vim --servername LATEX --remote-silent '+normal %{line}G' '%{input}'"
