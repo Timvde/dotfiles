@@ -204,3 +204,9 @@ nmap <F6> :RainbowParenthesesToggle<CR>
 
 " switch between html tags
 runtime macros/matchit.vim
+
+" Synctex support
+" let g:vimtex_complete_close_braces = 1
+" let g:vimtex_latexmk_options = '-verbose -pdf -file-line-error -synctex=1 -interaction=nonstopmode --shell-escape'
+let g:latex_view_general_viewer = 'zathura'
+let g:vimtex_view_method = 'zathura'
