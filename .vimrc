@@ -178,8 +178,8 @@ let g:airline_powerline_fonts = 1
 " Find ctags in current directory, then recursively upwards
 set tags=./tags;
 " ctags previous/next match
-nmap [ :tprevious<CR>
-nmap ] :tnext<CR>
+nmap <leader>[ :tprevious<CR>
+nmap <leader>] :tnext<CR>
 
 " allow local .vimrc file
 set exrc
