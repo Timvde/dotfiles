@@ -82,7 +82,6 @@ export EDITOR='vim'
 
 # We always want to use zsh ;)
 export SHELL=/usr/bin/zsh
-export TERM=xterm-256color
 
 # include bash aliases
 source $HOME/.bash_aliases
