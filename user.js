@@ -16,7 +16,7 @@ user_pref("layout.word_select.eat_space_to_next_word", false);
 user_pref("media.fragmented-mp4.exposed", true);
 user_pref("media.fragmented-mp4.ffmpeg.enabled", true);
 user_pref("media.mediasource.format-reader.webm", true);
-user_pref("media.block-autoplay-until-in-foreground", true);
+user_pref("media.block-autoplay-until-in-foreground", false);
 user_pref("network.http.speculative-parallel-limit", 0);
 user_pref("xpinstall.signatures.required", false);
 user_pref("extensions.interposition.enabled", false);
