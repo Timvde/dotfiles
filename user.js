@@ -20,10 +20,11 @@ user_pref("media.block-autoplay-until-in-foreground", false);
 user_pref("network.http.speculative-parallel-limit", 0);
 user_pref("xpinstall.signatures.required", false);
 user_pref("extensions.interposition.enabled", false);
-user_pref("dom.ipc.processCount", 2);
+user_pref("dom.ipc.processCount", 4);
 user_pref("ui.key.menuAccessKeyFocuses", false);
 user_pref("media.gpu-process-decoder", true);
 user_pref("layers.gpu-process.enabled", true);
 // Because fuck you, Webkit
 user_pref("layout.css.prefixes.webkit", false);
 user_pref("network.IDN_show_punycode", true);
+user_pref("browser.urlbar.speculativeConnect.enabled", true);
