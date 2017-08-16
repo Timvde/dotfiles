@@ -26,6 +26,9 @@ call vundle#end()
 
 filetype plugin indent on
 
+" Needed for YCM, and generally a pretty good idea
+set encoding=utf-8
+
 " Graphical undo tree bindings
 nnoremap <F5> :GundoToggle<CR>
 
