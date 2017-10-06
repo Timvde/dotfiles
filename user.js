@@ -6,6 +6,7 @@ user_pref("browser.newtabpage.enhanced", false);
 user_pref("browser.newtabpage.introShown", true);
 user_pref("browser.pocket.enabled", false);
 user_pref("browser.showQuitWarning", true);
+user_pref("browser.tabs.insertRelatedAfterCurrent", false);
 user_pref("browser.urlbar.autoFill", false);
 user_pref("browser.urlbar.doubleClickSelectsAll", false);
 user_pref("browser.urlbar.formatting.enabled", false);
