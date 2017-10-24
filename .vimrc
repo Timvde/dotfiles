@@ -213,3 +213,9 @@ runtime macros/matchit.vim
 " let g:vimtex_latexmk_options = '-verbose -pdf -file-line-error -synctex=1 -interaction=nonstopmode --shell-escape'
 let g:latex_view_general_viewer = 'zathura'
 let g:vimtex_view_method = 'zathura'
+
+" vimtex/YCM support
+if !exists('g:ycm_semantic_triggers')
+    let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
