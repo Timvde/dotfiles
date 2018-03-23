@@ -29,3 +29,5 @@ user_pref("layers.gpu-process.enabled", true);
 user_pref("layout.css.prefixes.webkit", false);
 user_pref("network.IDN_show_punycode", true);
 user_pref("browser.urlbar.speculativeConnect.enabled", true);
+// Don't ask me to open <protocol> with <current website>
+user_pref("network.protocol-handler.external-default", false);
