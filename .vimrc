@@ -5,7 +5,7 @@ filetype off
 set rtp +=$HOME/.vim/bundle/vundle
 call vundle#begin()
 Plugin 'gmarik/vundle'
-Plugin 'rking/ag.vim'
+Plugin 'jremmen/vim-ripgrep'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'nixprime/cpsm'
 Plugin 'vim-scripts/The-NERD-tree'
@@ -113,14 +113,16 @@ set timeout timeoutlen=1000 ttimeoutlen=100
 " Enable mouse
 " set mouse=a
 
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-    " Use Ag over Grep
-    set grepprg=ag\ --nogroup
+" Use ripgrep
+if executable('rg')
+    " Use rg over Grep
+    set grepprg=rg\ --vimgrep\ -S
     let g:grep_cmd_opts = '--line-numbers --noheading'
-    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-    let g:ctrlp_user_command = 'ag %s -l -g ""'
+    " Use rg in CtrlP for listing files. Lightning fast and respects .gitignore
+    let g:ctrlp_user_command = 'rg %s -l -g ""'
 endif
+
+let g:rg_command = 'rg --vimgrep -S'
 
 let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 
