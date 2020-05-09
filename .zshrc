@@ -44,6 +44,8 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Better file matching
 setopt EXTENDED_GLOB
+# By default, zsh fails when finding a glob that doesn't match any files. This breaks HEAD^ in git, so disable this "feature".
+setopt NO_NOMATCH
 
 # Alt-S inserts sudo at the beginning of the line
 insert_sudo () { zle beginning-of-line; zle -U "sudo "; }
