@@ -13,9 +13,3 @@ ln -s "${PWD}/.gitignore_global" ~/.gitignore_global
 ln -s "${PWD}/.gitconfig" ~/.gitconfig
 
 echo "Linking done"
-
-echo "Compiling cpsm"
-cd .vim/bundle/cpsm
-./install.sh
-cd -
-echo "Compiling cpsm done"
