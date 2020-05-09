@@ -153,15 +153,6 @@ set smartcase
 " Don't make x overwrite the default register
 noremap x "_x
 
-" Make ctrl-v in insert mode automatically enable and disable paste mode
-inoremap <C-V> <C-O>:call PasteNoIndent()<CR>
-
-function! PasteNoIndent()
-    set paste
-    execute "normal" '"+p'
-    set nopaste
-endfunction
-
 " Visual shifting does not exit Visual mode
 vnoremap < <gv
 vnoremap > >gv
