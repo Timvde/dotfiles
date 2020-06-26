@@ -4,7 +4,7 @@ filetype off
 
 set rtp +=$HOME/.vim/bundle/vundle
 call vundle#begin()
-Plugin 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'rking/ag.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'nixprime/cpsm'
