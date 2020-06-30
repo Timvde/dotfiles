@@ -53,10 +53,6 @@ bindkey "^[s" insert-sudo
 # Improve killall completion
 zstyle ':completion:*:killall:*' command 'ps -u $USER -o cmd'
 
-# Remember ALL the history (okay, not all, but a lot more than now)
-AVEHIST=10000
-HISTSIZE=10000
-
 # fuzzy matching for completions
 zstyle ':completion:*' completer _complete _match _approximate
 zstyle ':completion:*:match:*' original only
