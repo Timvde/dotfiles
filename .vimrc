@@ -29,6 +29,10 @@ filetype plugin indent on
 " Needed for YCM, and generally a pretty good idea
 set encoding=utf-8
 
+if has('python3')
+  let g:gundo_prefer_python3 = 1
+endif
+
 " Graphical undo tree bindings
 nnoremap <F5> :GundoToggle<CR>
 
