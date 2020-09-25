@@ -22,6 +22,8 @@ Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'lyuts/vim-rtags'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'lervag/vimtex'
+Plugin 'rust-lang/rust.vim'
+Plugin 'xtal8/traces.vim'
 call vundle#end()
 
 filetype plugin indent on
@@ -173,9 +175,9 @@ let g:airline_powerline_fonts = 1
 
 " Find ctags in current directory, then recursively upwards
 set tags=./tags;
-" ctags previous/next match
-nmap <leader>[ :tprevious<CR>
-nmap <leader>] :tnext<CR>
+
+" use YCM for goto
+nnoremap <Leader>] :YcmCompleter GoTo<CR>
 
 " allow local .vimrc file
 set exrc
@@ -212,3 +214,5 @@ if !exists('g:ycm_semantic_triggers')
     let g:ycm_semantic_triggers = {}
 endif
 let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
+
+let g:syntastic_rust_checkers = ['cargo', 'rustc']

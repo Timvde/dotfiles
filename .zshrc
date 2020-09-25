@@ -76,7 +76,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/home/tim/bin/idp/bin:/home/tim/bin:/home/tim/scripts:/usr/bin/vendor_perl:$PATH"
+export PATH="/home/tim/bin:/home/tim/scripts:/usr/bin/vendor_perl:/home/tim/.cargo/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # Preferred editor for local and remote sessions
