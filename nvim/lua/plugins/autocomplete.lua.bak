@@ -1,0 +1,54 @@
+return {
+	-- LSP
+	{
+		"neovim/nvim-lspconfig",
+		event = { "BufReadPre", "BufNewFile" },
+		dependencies = {
+			"mason.nvim",
+		},
+		config = function()
+			local lspconfig = require("lspconfig")
+		end,
+	},
+	-- Formatting
+	{
+		"jose-elias-alvarez/null-ls.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			local null_ls = require("null-ls")
+			require("null-ls").setup({
+				sources = {
+					null_ls.builtins.formatting.jq,
+					null_ls.builtins.formatting.black,
+					null_ls.builtins.formatting.isort,
+				},
+			})
+		end,
+	},
+	-- Install servers
+	{
+		"williamboman/mason.nvim",
+		cmd = "Mason",
+		build = ":MasonUpdate",
+		config = function()
+			require("mason").setup()
+		end
+	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		config = function()
+			require("mason-lspconfig").setup()
+		end,
+	},
+	{
+		"jay-babu/mason-null-ls.nvim",
+		config = function()
+			require("mason-null-ls").setup({
+				automatic_installation = true,
+			})
+		end,
+	},
+}
