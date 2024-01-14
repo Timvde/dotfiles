@@ -11,7 +11,7 @@ return {
 		{ "<leader>fb", function() require("telescope.builtin").buffers() end, desc = "Find buffer" },
 		{ "<leader>fg", function() require("telescope.builtin").live_grep() end, desc = "Live grep" },
 		{ "<leader>fh", function() require("telescope.builtin").help_tags() end, desc = "Search vim help" },
-		{ "<leader>ft", function() require("telescope.builtin").lsp_dynamic_workspace_symbols() end, desc = "Find symbols" },
+		{ "<leader>ft", function() require("telescope.builtin").tags() end, desc = "Find symbols" },
 		{ "<F5>", function() require("telescope").extensions.undo.undo() end, desc = "Show undo tree" },
 		{ "<F6>", function() require("telescope").extensions.neoclip.neoclip() end, desc = "Toggle clipboard history" },
 	},
