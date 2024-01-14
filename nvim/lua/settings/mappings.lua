@@ -7,3 +7,5 @@ vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 -- Toggle spelling
 vim.keymap.set("n", "<leader>ss", "<cmd>setlocal spell!<cr>")
+-- Exit terminal mode - when attached in neotest
+vim.keymap.set("t", "<leader>q", "<C-\\><C-n>")
