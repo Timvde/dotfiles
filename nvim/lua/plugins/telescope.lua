@@ -12,6 +12,7 @@ return {
 		{ "<leader>fg", function() require("telescope.builtin").live_grep() end, desc = "Live grep" },
 		{ "<leader>fh", function() require("telescope.builtin").help_tags() end, desc = "Search vim help" },
 		{ "<leader>ft", function() require("telescope.builtin").tags() end, desc = "Find symbols" },
+		{ "<leader>fr", function() require("telescope.builtin").resume() end, desc = "Resume previous search" },
 		{ "<F5>", function() require("telescope").extensions.undo.undo() end, desc = "Show undo tree" },
 		{ "<F6>", function() require("telescope").extensions.neoclip.neoclip() end, desc = "Toggle clipboard history" },
 	},
