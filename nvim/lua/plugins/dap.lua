@@ -8,9 +8,9 @@ return {
 			{ "<leader>dap", function() require("dapui").toggle({ reset = true }) end, desc="Toggle debugging UI" },
 			{ "<leader>b", function() require("dap").toggle_breakpoint() end },
 			{ "<leader>cb", ":lua require('dap').toggle_breakpoint('')" },
-			{ "<leader>di", function() require("dap").step_into() end },
-			{ "<leader>do", function() require("dap").step_over() end },
-			{ "<leader>dc", function() require("dap").continue() end },
+			{ "<F7>", function() require("dap").step_into() end },
+			{ "<F8>", function() require("dap").step_over() end },
+			{ "<F9>", function() require("dap").continue() end },
 		},
 		config = function()
 			local dapui = require("dapui")

@@ -7,7 +7,7 @@ return {
 	},
 	cmd = { "Neotree" },
 	keys = {
-		{ "<F8>", "<cmd>Neotree toggle reveal<cr>", desc = "Toggle tree sidebar" },
+		{ "<F4>", "<cmd>Neotree toggle reveal<cr>", desc = "Toggle tree sidebar" },
 	},
 	config = function()
 		require("neo-tree").setup({
