@@ -1,35 +1,42 @@
 return {
-	{
-		"VonHeikemen/lsp-zero.nvim",
-		dependencies = {
-			"mason.nvim",
-			"neovim/nvim-lspconfig",
-			"hrsh7th/nvim-cmp",
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-nvim-lua",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-nvim-lsp-signature-help",
-		},
-		config = function()
-			local lsp = require('lsp-zero').preset({
-				name = "recommended",
-				set_lsp_keymaps = {
-					omit = { "gs" },
-				}
-			})
-			local lspconfig = require('lspconfig')
-			local cmp = require('cmp')
+    {
+        'neovim/nvim-lspconfig',
+        config = function()
+            local lspconfig = require('lspconfig')
+            local lspconfig_defaults =  lspconfig.util.default_config
+            lspconfig_defaults.capabilities = vim.tbl_deep_extend(
+                'force',
+                lspconfig_defaults.capabilities,
+                require('cmp_nvim_lsp').default_capabilities()
+            )
 
-			lsp.on_attach(function(client, bufnr)
-				lsp.default_keymaps({ buffer = bufnr })
-				vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', {buffer = true})
-			end)
+            -- This is where you enable features that only work
+            -- if there is a language server active in the file
+            vim.api.nvim_create_autocmd('LspAttach', {
+                desc = 'LSP actions',
+                callback = function(event)
+                    local opts = {buffer = event.buf}
 
-			-- Configure lua language server for neovim
-			lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
-
-			lsp.setup()
+                    vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+                    vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+                    vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+                    vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+                    vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+                    vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+                    --vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+                    vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+                    vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+                    --vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+                    vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', {buffer = true})
+                end,
+            })
+        end
+    },
+    {'hrsh7th/cmp-nvim-lsp'},
+    {
+        'hrsh7th/nvim-cmp',
+        config = function()
+            local cmp = require('cmp')
 
 			local has_words_before = function()
 				unpack = unpack or table.unpack
@@ -37,10 +44,15 @@ return {
 				return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 			end
 
-			cmp.setup({
-				mapping = {
+            cmp.setup({
+                sources = {
+                    {name = 'nvim_lsp'},
+					{ name = 'nvim_lsp_signature_help' },
+					{ name = 'path', keyword_length = 3 },
+					{ name = 'buffer', keyword_length = 3 },
+                },
+                mapping = cmp.mapping.preset.insert({
 					['<C-Space>'] = cmp.mapping.complete(),
-
 					["<Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item()
@@ -54,7 +66,6 @@ return {
 							fallback()
 						end
 						end, { "i", "s" }),
-
 					["<S-Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_prev_item()
@@ -64,23 +75,21 @@ return {
 							fallback()
 						end
 						end, { "i", "s" }),
-				},
-				sources = {
-					{ name = 'nvim_lsp' },
-					{ name = 'nvim_lsp_signature_help' },
-					{ name = 'path', keyword_length = 3 },
-					{ name = 'buffer', keyword_length = 3 },
-				},
-			})
-		end,
-		manage_nvim_cmp = {
-			set_basic_mappings = true,
-			set_extra_mappings = false,
-			-- use_luasnip = true,
-			set_format = true,
-			documentation_window = true,
-		}
-	},
+
+                }),
+                snippet = {
+                    expand = function(args)
+                        vim.snippet.expand(args.body)
+                    end,
+                },
+            })
+        end
+    },
+    {'hrsh7th/cmp-nvim-lsp'},
+    {'hrsh7th/cmp-nvim-lua'},
+    {'hrsh7th/cmp-buffer'},
+    {'hrsh7th/cmp-path'},
+    {'hrsh7th/cmp-nvim-lsp-signature-help'},
 	{
 		"williamboman/mason.nvim",
 		cmd = "Mason",
@@ -93,49 +102,28 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = {
-					"lua_ls",
-					"jedi_language_server",
-					"jsonls",
-				}
+                handlers = {
+                    function(server_name)
+                        require('lspconfig')[server_name].setup({})
+                    end,
+                },
 			})
 		end
 	},
-	{
-		"jay-babu/mason-null-ls.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
-			"williamboman/mason.nvim",
-			"jose-elias-alvarez/null-ls.nvim",
-		},
-		config = function()
-			local null_ls = require("null-ls")
-			local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-			null_ls.setup({
-				-- you can reuse a shared lspconfig on_attach callback here
-				on_attach = function(client, bufnr)
-					if client.supports_method("textDocument/formatting") then
-						vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-						vim.api.nvim_create_autocmd("BufWritePre", {
-							group = augroup,
-							buffer = bufnr,
-							callback = function()
-								vim.lsp.buf.format({ bufnr = bufnr })
-							end,
-						})
-					end
-				end,
-			})
-			require("mason-null-ls").setup({
-				ensure_installed = {
-					"jq",
-					"xmlformatter",
-					"flake8",
-					"black",
-					"isort",
-				},
-				handlers = {}
-			})
-		end,
-	}
+    {
+        'stevearc/conform.nvim',
+        opts = {},
+        config = function()
+            require('conform').setup({
+                formatters_by_ft = {
+                    python = { "ruff_format", "ruff_fix", "ruff_organize_imports", "ruff_format" },
+                },
+                format_on_save = {
+                    -- These options will be passed to conform.format()
+                    timeout_ms = 500,
+                    lsp_format = "fallback",
+                },
+            })
+        end
+    }
 }
