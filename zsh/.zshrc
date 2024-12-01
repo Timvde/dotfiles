@@ -6,8 +6,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # History settings
-SAVEHIST=10000
-HISTSIZE=10000
+SAVEHIST=100000
+HISTSIZE=100000
 HISTFILE=~/.zsh_history
 
 # General environment variables
