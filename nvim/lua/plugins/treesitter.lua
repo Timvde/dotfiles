@@ -6,7 +6,7 @@ return {
 	build = function() vim.cmd.TSUpdate() end,
 	config = function()
 		require("nvim-treesitter.configs").setup({
-			ensure_installed = { "lua", "python" },
+			ensure_installed = { "lua", "python", "sql" },
 			highlight = {
 				enable = true,
 			},
